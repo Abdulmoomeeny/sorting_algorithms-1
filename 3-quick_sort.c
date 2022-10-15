@@ -1,7 +1,10 @@
 #include "sort.h"
 
 /**
- * swap -
+ * swap - swaps i and j
+ * @array: the array
+ * @i: index 1
+ * @j: index 2
 **/
 
 void swap(int *array, int i, int j)
@@ -14,17 +17,20 @@ void swap(int *array, int i, int j)
 }
 
 /**
- * partition -
+ * partition - partition the array
+ * @array: the array
+ * @size: size of the array
+ * @lo: start of the index
+ * @hi: end of the index
+ * Return: partition index
 **/
 
-int partition(int *array, size_t size, int lo, int hi)
+size_t partition(int *array, size_t size, int lo, int hi)
 {
 	int pivot = array[hi];
-	
 	int i = lo - 1;
-	
 	int j;
-	
+
 	for (j = lo; j <= hi - 1; j++)
 	{
 		if (array[j] < pivot)
@@ -36,13 +42,21 @@ int partition(int *array, size_t size, int lo, int hi)
 	}
 	swap(array, i + 1, hi);
 	print_array(array, size);
-	return (i+1);
+	return (i + 1);
 }
+
+/**
+ * recursive_quick_sort - recursive
+ * @array: the array
+ * @size: size of the array
+ * @lo: start of the index
+ * @hi: end of the index
+**/
 
 void recursive_quick_sort(int *array, size_t size, int lo, int hi)
 {
 	int p;
-	
+
 	if (lo < hi)
 	{
 		p = partition(array, size, lo, hi);
